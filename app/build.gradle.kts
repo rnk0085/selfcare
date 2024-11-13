@@ -63,4 +63,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // https://developer.android.com/guide/navigation?_gl=1*isa79f*_up*MQ..*_ga*NTI0NDYyNjA5LjE3MzE0OTY0NTU.*_ga_6HH9YJMN9M*MTczMTQ5NjQ1NC4xLjAuMTczMTQ5NjU5Mi4wLjAuMTEwNzc3ODY0MA..#set-up
+    implementation(libs.androidx.navigation.compose)
+    androidTestImplementation(libs.androidx.navigation.testing)
 }
