@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.rnk0085.selfcare.ui.screen.Screen
 import com.rnk0085.selfcare.ui.screen.diaryList.diaryList
+import com.rnk0085.selfcare.ui.screen.reflection.reflection
 
 @Composable
 internal fun App() {
@@ -14,6 +15,8 @@ internal fun App() {
         navController = navController,
         startDestination = Screen.DiaryList,
     ) {
-        diaryList()
+        diaryList(navController)
+
+        reflection()
     }
 }

@@ -1,4 +1,4 @@
-package com.rnk0085.selfcare.ui.screen.diaryList
+package com.rnk0085.selfcare.ui.screen.reflection
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,16 +10,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-internal fun DiaryListScreen(
-    onNavigateToReflection: () -> Unit,
-) {
+internal fun ReflectionScreen() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Button(onClick = onNavigateToReflection) {
-            Text("Reflection")
+        Text("ふりかえり画面")
+
+        Button(onClick = { /* TODO */ }) {
+            Text("記録する")
         }
     }
 }
