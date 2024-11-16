@@ -14,12 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 
 @Composable
-internal fun ReflectionScreen() {
+internal fun ReflectionScreen(
+    onBackClicked: () -> Unit,
+) {
     Scaffold(
         topBar = {
             SelfcareTopAppBar(
                 title = "ふりかえり",
-                onBackClicked = { /* TODO */ },
+                onBackClicked = onBackClicked,
             )
         },
     ) { innerPadding ->
@@ -42,5 +44,7 @@ internal fun ReflectionScreen() {
 @Composable
 @Preview
 private fun ReflectionScreenPreview() {
-    ReflectionScreen()
+    ReflectionScreen(
+        onBackClicked = {},
+    )
 }

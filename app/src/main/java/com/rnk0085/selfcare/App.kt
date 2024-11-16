@@ -17,6 +17,6 @@ internal fun App() {
     ) {
         diaryList(navController)
 
-        reflection()
+        reflection(navController)
     }
 }
