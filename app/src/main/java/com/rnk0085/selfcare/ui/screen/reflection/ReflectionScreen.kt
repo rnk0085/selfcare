@@ -22,6 +22,8 @@ import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
+import com.rnk0085.selfcare.ui.screen.reflection.component.MoodRadioGroup
+import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
 
 @Composable
 internal fun ReflectionScreen(
@@ -29,6 +31,8 @@ internal fun ReflectionScreen(
 ) {
     var selectedDate by remember { mutableLongStateOf(currentTimeMillis) }
     var showDatePicker by remember { mutableStateOf(false) }
+
+    var selectedMood by remember { mutableStateOf<MoodType?>(null) }
 
     Scaffold(
         topBar = {
@@ -60,6 +64,11 @@ internal fun ReflectionScreen(
                     onDismiss = { showDatePicker = false },
                 )
             }
+
+            MoodRadioGroup(
+                selectedMood = selectedMood,
+                onMoodSelected = { selectedMood = it },
+            )
 
             Button(onClick = { /* TODO */ }) {
                 Text("記録する")
