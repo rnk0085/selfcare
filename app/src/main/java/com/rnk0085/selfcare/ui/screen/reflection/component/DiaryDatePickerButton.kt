@@ -26,13 +26,14 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-internal fun DiaryDatePicker(
+internal fun DiaryDatePickerButton(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var selectedDate by remember { mutableStateOf(System.currentTimeMillis()) }
 
     OutlinedButton(
-        onClick = { /* TODO */ },
+        onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             contentColor = MaterialTheme.colorScheme.onSurface,
@@ -53,7 +54,7 @@ internal fun DiaryDatePicker(
 
             Text(
                 text = convertMillisToDate(selectedDate),
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelLarge,
             )
         }
     }
@@ -66,6 +67,8 @@ private fun convertMillisToDate(millis: Long): String {
 
 @Composable
 @Preview
-private fun DiaryDatePickerPreview() {
-    DiaryDatePicker()
+private fun DiaryDatePickerButtonPreview() {
+    DiaryDatePickerButton(
+        onClick = {},
+    )
 }
