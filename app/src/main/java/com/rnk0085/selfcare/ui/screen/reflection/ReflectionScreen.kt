@@ -8,15 +8,24 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
+import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
+import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 
 @Composable
 internal fun ReflectionScreen(
     onBackClicked: () -> Unit,
 ) {
+    var showDatePicker by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             SelfcareTopAppBar(
@@ -28,11 +37,21 @@ internal fun ReflectionScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
+                .padding(innerPadding)
+                .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("ふりかえり画面")
+            DiaryDatePickerButton(
+                onClick = { showDatePicker = true },
+            )
+
+            if (showDatePicker) {
+                DatePickerModal(
+                    onDateSelected = { /* TODO */ },
+                    onDismiss = { showDatePicker = false },
+                )
+            }
 
             Button(onClick = { /* TODO */ }) {
                 Text("記録する")
