@@ -24,6 +24,7 @@ import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 internal fun ReflectionScreen(
     onBackClicked: () -> Unit,
 ) {
+    var selectedDate by remember { mutableStateOf(System.currentTimeMillis()) }
     var showDatePicker by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -43,12 +44,16 @@ internal fun ReflectionScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             DiaryDatePickerButton(
+                selectedDate = selectedDate,
                 onClick = { showDatePicker = true },
             )
 
             if (showDatePicker) {
                 DatePickerModal(
-                    onDateSelected = { /* TODO */ },
+                    onDateSelected = {
+                        selectedDate = it ?: System.currentTimeMillis()
+                        showDatePicker = false
+                    },
                     onDismiss = { showDatePicker = false },
                 )
             }
