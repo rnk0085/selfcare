@@ -28,7 +28,7 @@ internal fun PrimaryButton(
             disabledContentColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.38f),
             disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.38f),
         ),
-        shape = RoundedCornerShape(8.dp),
+        shape = MaterialTheme.shapes.small,
     ) {
         Text(
             text = text,
