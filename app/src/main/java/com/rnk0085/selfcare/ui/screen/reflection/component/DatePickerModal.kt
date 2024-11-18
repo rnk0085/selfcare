@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.rnk0085.selfcare.R
 
 // https://developer.android.com/develop/ui/compose/components/datepickers#modal
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +34,7 @@ internal fun DatePickerModal(
                 }
             ) {
                 Text(
-                    text = "OK",
+                    text = stringResource(R.string.ok),
                     style = MaterialTheme.typography.labelLarge,
                 )
             }
@@ -40,7 +42,7 @@ internal fun DatePickerModal(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    text = "Cancel",
+                    text = stringResource(R.string.cancel),
                     style = MaterialTheme.typography.labelLarge,
                 )
             }
