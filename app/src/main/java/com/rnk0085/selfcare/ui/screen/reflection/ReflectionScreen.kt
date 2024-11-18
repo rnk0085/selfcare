@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.ui.currentTimeMillis
+import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
@@ -33,7 +34,7 @@ internal fun ReflectionScreen(
         topBar = {
             SelfcareTopAppBar(
                 title = "ふりかえり",
-                onBackClicked = onBackClicked,
+                navigationType = NavigationType.Back(onClick = onBackClicked),
             )
         },
     ) { innerPadding ->
