@@ -25,7 +25,7 @@ import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
-internal fun MoodRadioGroup(
+internal fun MoodSelector(
     selectedMood: MoodType?,
     onMoodSelected: (MoodType) -> Unit,
     modifier: Modifier = Modifier,
@@ -89,7 +89,7 @@ private fun MoodIconButton(
 @Composable
 private fun MoodRadioGroupPreview() {
     SelfcareTheme {
-        MoodRadioGroup(
+        MoodSelector(
             selectedMood = MoodType.GOOD,
             onMoodSelected = {},
         )

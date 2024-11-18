@@ -22,7 +22,7 @@ import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
-import com.rnk0085.selfcare.ui.screen.reflection.component.MoodRadioGroup
+import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
 
 @Composable
@@ -65,7 +65,7 @@ internal fun ReflectionScreen(
                 )
             }
 
-            MoodRadioGroup(
+            MoodSelector(
                 selectedMood = selectedMood,
                 onMoodSelected = { selectedMood = it },
             )
