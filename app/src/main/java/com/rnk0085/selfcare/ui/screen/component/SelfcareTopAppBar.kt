@@ -26,6 +26,7 @@ internal fun SelfcareTopAppBar(
                 text = title,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
+                style = MaterialTheme.typography.titleMedium,
             )
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
