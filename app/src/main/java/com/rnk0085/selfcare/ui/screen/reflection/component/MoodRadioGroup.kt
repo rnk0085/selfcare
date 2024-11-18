@@ -76,6 +76,8 @@ private fun MoodIconButton(
 ) {
     val iconColor = if (isSelected) Color.Black else Color.LightGray
 
+    // TODO: アイコンサイズを大きくする
+    // TODO: アイコンごとに色を設定する
     IconButton(onClick) {
         Icon(
             painter = painterResource(moodType.resourceId),
