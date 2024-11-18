@@ -9,6 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
@@ -24,7 +26,7 @@ import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 internal fun ReflectionScreen(
     onBackClicked: () -> Unit,
 ) {
-    var selectedDate by remember { mutableStateOf(System.currentTimeMillis()) }
+    var selectedDate by remember { mutableLongStateOf(currentTimeMillis) }
     var showDatePicker by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -51,7 +53,7 @@ internal fun ReflectionScreen(
             if (showDatePicker) {
                 DatePickerModal(
                     onDateSelected = {
-                        selectedDate = it ?: System.currentTimeMillis()
+                        selectedDate = it ?: currentTimeMillis
                         showDatePicker = false
                     },
                     onDismiss = { showDatePicker = false },

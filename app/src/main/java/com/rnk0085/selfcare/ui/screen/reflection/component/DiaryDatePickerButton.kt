@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.theme.sectionContainerColor
 import com.rnk0085.selfcare.ui.theme.sectionContentColor
 import java.text.SimpleDateFormat
@@ -67,7 +68,7 @@ private fun convertMillisToDate(millis: Long): String {
 @Preview
 private fun DiaryDatePickerButtonPreview() {
     DiaryDatePickerButton(
-        selectedDate = System.currentTimeMillis(),
+        selectedDate = currentTimeMillis,
         onClick = {},
     )
 }

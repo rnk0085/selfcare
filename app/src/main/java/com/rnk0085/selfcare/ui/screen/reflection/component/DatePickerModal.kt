@@ -11,6 +11,7 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.rnk0085.selfcare.R
+import com.rnk0085.selfcare.ui.currentTimeMillis
 
 // https://developer.android.com/develop/ui/compose/components/datepickers#modal
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,7 +21,7 @@ internal fun DatePickerModal(
     onDismiss: () -> Unit,
 ) {
     val datePickerState = rememberDatePickerState(
-        initialSelectedDateMillis = System.currentTimeMillis(),
+        initialSelectedDateMillis = currentTimeMillis,
         selectableDates = NoFutureDate,
     )
 
@@ -58,6 +59,6 @@ internal fun DatePickerModal(
 @OptIn(ExperimentalMaterial3Api::class)
 val NoFutureDate : SelectableDates = object : SelectableDates {
     override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-        return utcTimeMillis <= System.currentTimeMillis()
+        return utcTimeMillis <= currentTimeMillis
     }
 }
