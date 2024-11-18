@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 
 @Composable
@@ -21,7 +22,7 @@ internal fun ReflectionScreen(
         topBar = {
             SelfcareTopAppBar(
                 title = "ふりかえり",
-                onBackClicked = onBackClicked,
+                navigationType = NavigationType.Back(onClick = onBackClicked),
             )
         },
     ) { innerPadding ->
