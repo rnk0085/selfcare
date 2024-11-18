@@ -3,4 +3,5 @@
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
     <string name="mood_selector_label">どのような1日でしたか？</string>
+    <string name="three_good_things_label">3つのGoodなことは？</string>
 </resources>

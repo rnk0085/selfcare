@@ -24,6 +24,7 @@ import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
+import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
 
 @Composable
 internal fun ReflectionScreen(
@@ -33,6 +34,8 @@ internal fun ReflectionScreen(
     var showDatePicker by remember { mutableStateOf(false) }
 
     var selectedMood by remember { mutableStateOf<MoodType?>(null) }
+
+    var firstText by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -68,6 +71,11 @@ internal fun ReflectionScreen(
             MoodSelector(
                 selectedMood = selectedMood,
                 onMoodSelected = { selectedMood = it },
+            )
+
+            ThreeGoodThings(
+                firstText = firstText,
+                onFirstTextChange = { firstText = it },
             )
 
             Button(onClick = { /* TODO */ }) {
