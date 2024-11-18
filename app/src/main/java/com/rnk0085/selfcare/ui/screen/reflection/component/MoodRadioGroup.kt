@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
+import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun MoodRadioGroup(
@@ -33,9 +34,9 @@ internal fun MoodRadioGroup(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(8.dp))
+            .clip(shape = MaterialTheme.shapes.small)
             .background(Color.White)
-            .padding(all = 16.dp),
+            .padding(all = Spacing.Large),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
        Text(
@@ -43,7 +44,7 @@ internal fun MoodRadioGroup(
            style = MaterialTheme.typography.labelMedium,
        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(Spacing.Small))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
