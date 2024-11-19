@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,8 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
-import com.rnk0085.selfcare.ui.theme.sectionContainerColor
-import com.rnk0085.selfcare.ui.theme.sectionContentColor
 
 @Composable
 internal fun ThreeGoodThings(
@@ -54,37 +49,6 @@ internal fun ThreeGoodThings(
                 .padding(horizontal = Spacing.Small),
         )
     }
-}
-
-@Composable
-private fun GoodThingTextField(
-    value: String,
-    placeHolderText: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        minLines = 3,
-        maxLines = 5,
-        modifier = modifier,
-        placeholder = {
-            Text(
-                text = placeHolderText,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        },
-        textStyle = MaterialTheme.typography.bodyMedium,
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedTextColor = sectionContentColor,
-            focusedContainerColor = sectionContainerColor,
-            focusedPlaceholderColor = Color.LightGray,
-            unfocusedPlaceholderColor = Color.LightGray,
-            focusedBorderColor = sectionContentColor,
-            disabledBorderColor = Color.LightGray,
-        ),
-    )
 }
 
 @Composable
