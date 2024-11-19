@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
+import com.rnk0085.selfcare.ui.theme.sectionContainerColor
 
 @Composable
 internal fun MoodSelector(
@@ -34,7 +35,7 @@ internal fun MoodSelector(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape = MaterialTheme.shapes.small)
-            .background(Color.White)
+            .background(sectionContainerColor)
             .padding(all = Spacing.Large),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
