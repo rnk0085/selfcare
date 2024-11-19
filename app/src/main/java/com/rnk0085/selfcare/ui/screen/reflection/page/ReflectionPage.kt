@@ -119,6 +119,7 @@ internal fun ReflectionPage(
 
         Spacer(modifier = Modifier.height(48.dp))
 
+        // TODO: 記録ボタンをスクロールしなくても表示できるようにする
         PrimaryButton(
             text = stringResource(R.string.record_button_text),
             onClick = onRecordClick,
