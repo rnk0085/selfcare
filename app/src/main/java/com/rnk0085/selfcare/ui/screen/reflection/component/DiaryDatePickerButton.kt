@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.ui.currentTimeMillis
+import com.rnk0085.selfcare.ui.theme.Spacing
 import com.rnk0085.selfcare.ui.theme.sectionContainerColor
 import com.rnk0085.selfcare.ui.theme.sectionContentColor
 import java.text.SimpleDateFormat
@@ -49,7 +50,7 @@ internal fun DiaryDatePickerButton(
                 modifier = Modifier.size(48.dp),
             )
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(Spacing.Small))
 
             Text(
                 text = convertMillisToDate(selectedDate),
