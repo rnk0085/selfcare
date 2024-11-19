@@ -21,8 +21,7 @@ import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ThreeGoodThings(
-    firstText: String,
-    onFirstTextChange: (String) -> Unit,
+    goodThingItems: List<GoodThingItem>,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -38,26 +37,45 @@ internal fun ThreeGoodThings(
             style = MaterialTheme.typography.labelMedium,
         )
 
-        Spacer(modifier = Modifier.height(Spacing.Medium))
+        goodThingItems.forEach { goodThingItem ->
+            Spacer(modifier = Modifier.height(Spacing.Medium))
 
-        GoodThingTextField(
-            placeHolderText = "美味しいご飯を食べた",
-            value = firstText,
-            onValueChange = onFirstTextChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = Spacing.Small),
-        )
+            GoodThingTextField(
+                placeHolderText = "美味しいご飯を食べた",
+                value = goodThingItem.value,
+                onValueChange = goodThingItem.onValueChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Spacing.Small),
+            )
+        }
     }
 }
+
+data class GoodThingItem(
+    val value: String,
+    val onValueChange: (String) -> Unit,
+)
 
 @Composable
 @Preview
 private fun ThreeGoodThingsPreview() {
     SelfcareTheme {
         ThreeGoodThings(
-            firstText = "",
-            onFirstTextChange = {},
+            goodThingItems = listOf(
+                GoodThingItem(
+                    value = "",
+                    onValueChange = {},
+                ),
+                GoodThingItem(
+                    value = "",
+                    onValueChange = {},
+                ),
+                GoodThingItem(
+                    value = "",
+                    onValueChange = {},
+                ),
+            )
         )
     }
 }

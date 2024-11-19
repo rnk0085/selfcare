@@ -22,6 +22,7 @@ import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
+import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
@@ -36,6 +37,8 @@ internal fun ReflectionScreen(
     var selectedMood by remember { mutableStateOf<MoodType?>(null) }
 
     var firstText by remember { mutableStateOf("") }
+    var secondText by remember { mutableStateOf("") }
+    var thirdText by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -74,8 +77,20 @@ internal fun ReflectionScreen(
             )
 
             ThreeGoodThings(
-                firstText = firstText,
-                onFirstTextChange = { firstText = it },
+                goodThingItems = listOf(
+                    GoodThingItem(
+                        value = firstText,
+                        onValueChange = { firstText = it },
+                    ),
+                    GoodThingItem(
+                        value = secondText,
+                        onValueChange = { secondText = it },
+                    ),
+                    GoodThingItem(
+                        value = thirdText,
+                        onValueChange = { thirdText = it },
+                    ),
+                )
             )
 
             Button(onClick = { /* TODO */ }) {
