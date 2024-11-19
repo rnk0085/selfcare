@@ -26,6 +26,7 @@ internal fun ReflectionScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
+            onRecordClick = { /** TODO **/ },
         )
     }
 }

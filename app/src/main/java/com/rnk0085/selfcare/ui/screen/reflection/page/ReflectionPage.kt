@@ -5,12 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -27,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
+import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
@@ -38,6 +38,7 @@ import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ReflectionPage(
+    onRecordClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var selectedDate by remember { mutableLongStateOf(currentTimeMillis) }
@@ -118,9 +119,11 @@ internal fun ReflectionPage(
 
         Spacer(modifier = Modifier.height(48.dp))
 
-        Button(onClick = { /* TODO */ }) {
-            Text("記録する")
-        }
+        PrimaryButton(
+            text = stringResource(R.string.record_button_text),
+            onClick = onRecordClick,
+            modifier = Modifier.fillMaxWidth(),
+        )
 
         Spacer(modifier = Modifier.height(48.dp))
     }
@@ -130,6 +133,8 @@ internal fun ReflectionPage(
 @Composable
 private fun ReflectionPagePreview() {
     SelfcareTheme {
-        ReflectionPage()
+        ReflectionPage(
+            onRecordClick = {},
+        )
     }
 }
