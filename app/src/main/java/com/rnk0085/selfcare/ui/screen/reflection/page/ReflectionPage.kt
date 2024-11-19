@@ -29,8 +29,8 @@ import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.component.KeyboardEvent
-import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
-import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
+import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
+import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
 import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
@@ -80,10 +80,12 @@ internal fun ReflectionPage(
 
         Spacer(modifier = Modifier.height(Spacing.Medium))
 
-        MoodSelector(
+        MoodSelectorSection(
             selectedMood = selectedMood,
             onMoodSelected = { selectedMood = it },
         )
+
+        Spacer(modifier = Modifier.height(Spacing.Medium))
 
         ThreeGoodThings(
             goodThingItems = listOf(
