@@ -1,4 +1,4 @@
-package com.rnk0085.selfcare.ui.screen.reflection.component
+package com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
-internal fun ThreeGoodThings(
+internal fun ThreeGoodThingsSection(
     goodThingItems: List<GoodThingItem>,
     modifier: Modifier = Modifier,
 ) {
@@ -53,18 +53,11 @@ internal fun ThreeGoodThings(
     }
 }
 
-data class GoodThingItem(
-    val keyboardEvent: KeyboardEvent,
-    val placeHolderText: String,
-    val value: String,
-    val onValueChange: (String) -> Unit,
-)
-
 @Composable
 @Preview
 private fun ThreeGoodThingsPreview() {
     SelfcareTheme {
-        ThreeGoodThings(
+        ThreeGoodThingsSection(
             goodThingItems = listOf(
                 GoodThingItem(
                     keyboardEvent = KeyboardEvent.Next(

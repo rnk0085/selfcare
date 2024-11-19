@@ -27,11 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
-import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
-import com.rnk0085.selfcare.ui.screen.reflection.component.KeyboardEvent
+import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.GoodThingItem
+import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
-import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
+import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.ThreeGoodThingsSection
 import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
@@ -87,7 +87,7 @@ internal fun ReflectionPage(
 
         Spacer(modifier = Modifier.height(Spacing.Medium))
 
-        ThreeGoodThings(
+        ThreeGoodThingsSection(
             goodThingItems = listOf(
                 GoodThingItem(
                     keyboardEvent = KeyboardEvent.Next(
@@ -116,9 +116,13 @@ internal fun ReflectionPage(
             )
         )
 
+        Spacer(modifier = Modifier.height(48.dp))
+
         Button(onClick = { /* TODO */ }) {
             Text("記録する")
         }
+
+        Spacer(modifier = Modifier.height(48.dp))
     }
 }
 
