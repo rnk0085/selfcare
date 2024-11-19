@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
+import com.rnk0085.selfcare.ui.theme.placeholderColor
 import com.rnk0085.selfcare.ui.theme.sectionContainerColor
 import com.rnk0085.selfcare.ui.theme.sectionContentColor
 
@@ -41,10 +42,10 @@ internal fun GoodThingTextField(
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = sectionContentColor,
             focusedContainerColor = sectionContainerColor,
-            focusedPlaceholderColor = Color.LightGray,
-            unfocusedPlaceholderColor = Color.LightGray,
+            focusedPlaceholderColor = placeholderColor,
+            unfocusedPlaceholderColor = placeholderColor,
             focusedBorderColor = sectionContentColor,
-            disabledBorderColor = Color.LightGray,
+            unfocusedBorderColor = Color.LightGray,
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
