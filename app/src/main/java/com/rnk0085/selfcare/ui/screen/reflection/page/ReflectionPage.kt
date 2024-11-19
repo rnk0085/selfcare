@@ -3,7 +3,9 @@ package com.rnk0085.selfcare.ui.screen.reflection.page
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,14 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
-import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
-import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.component.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
+import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
+import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ReflectionPage(
@@ -63,20 +65,20 @@ internal fun ReflectionPage(
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        DiaryDatePickerButton(
+        Spacer(modifier = Modifier.height(Spacing.Medium))
+
+        DiaryDatePickerSection(
             selectedDate = selectedDate,
+            showDatePicker = showDatePicker,
             onClick = { showDatePicker = true },
+            onDismiss = { showDatePicker = false },
+            onDateSelected = {
+                selectedDate = it ?: currentTimeMillis
+                showDatePicker = false
+            },
         )
 
-        if (showDatePicker) {
-            DatePickerModal(
-                onDateSelected = {
-                    selectedDate = it ?: currentTimeMillis
-                    showDatePicker = false
-                },
-                onDismiss = { showDatePicker = false },
-            )
-        }
+        Spacer(modifier = Modifier.height(Spacing.Medium))
 
         MoodSelector(
             selectedMood = selectedMood,
