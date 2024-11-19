@@ -11,11 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -25,33 +20,35 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
-import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
-import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.ThreeGoodThingsSection
 import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
+import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ReflectionPage(
+    selectedDate: Long,
+    showDatePicker: Boolean,
+    selectedMood: MoodType?,
+    firstText: String,
+    secondText: String,
+    thirdText: String,
+    openDatePicker: () -> Unit,
+    closeDatePicker: () -> Unit,
+    onDateSelected: (Long?) -> Unit,
+    onMoodSelected: (MoodType) -> Unit,
+    onFirstTextChange: (String) -> Unit,
+    onSecondTextChange: (String) -> Unit,
+    onThirdTextChange: (String) -> Unit,
     onRecordClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var selectedDate by remember { mutableLongStateOf(currentTimeMillis) }
-    var showDatePicker by remember { mutableStateOf(false) }
-
-    var selectedMood by remember { mutableStateOf<MoodType?>(null) }
-
-    var firstText by remember { mutableStateOf("") }
-    var secondText by remember { mutableStateOf("") }
-    var thirdText by remember { mutableStateOf("") }
-
     val focusManager = LocalFocusManager.current
-
 
     Column(
         modifier = modifier
@@ -71,19 +68,16 @@ internal fun ReflectionPage(
         DiaryDatePickerSection(
             selectedDate = selectedDate,
             showDatePicker = showDatePicker,
-            onClick = { showDatePicker = true },
-            onDismiss = { showDatePicker = false },
-            onDateSelected = {
-                selectedDate = it ?: currentTimeMillis
-                showDatePicker = false
-            },
+            openDatePicker = openDatePicker,
+            closeDatePicker = closeDatePicker,
+            onDateSelected = onDateSelected,
         )
 
         Spacer(modifier = Modifier.height(Spacing.Medium))
 
         MoodSelectorSection(
             selectedMood = selectedMood,
-            onMoodSelected = { selectedMood = it },
+            onMoodSelected = onMoodSelected,
         )
 
         Spacer(modifier = Modifier.height(Spacing.Medium))
@@ -96,7 +90,7 @@ internal fun ReflectionPage(
                     ),
                     placeHolderText = stringResource(R.string.good_thing_place_holder_text_first),
                     value = firstText,
-                    onValueChange = { firstText = it },
+                    onValueChange = onFirstTextChange,
                 ),
                 GoodThingItem(
                     keyboardEvent = KeyboardEvent.Next(
@@ -104,7 +98,7 @@ internal fun ReflectionPage(
                     ),
                     placeHolderText = stringResource(R.string.good_thing_place_holder_text_second),
                     value = secondText,
-                    onValueChange = { secondText = it },
+                    onValueChange = onSecondTextChange,
                 ),
                 GoodThingItem(
                     keyboardEvent = KeyboardEvent.Done(
@@ -112,7 +106,7 @@ internal fun ReflectionPage(
                     ),
                     placeHolderText = stringResource(R.string.good_thing_place_holder_text_third),
                     value = thirdText,
-                    onValueChange = { thirdText = it },
+                    onValueChange = onThirdTextChange,
                 ),
             )
         )
@@ -135,6 +129,19 @@ internal fun ReflectionPage(
 private fun ReflectionPagePreview() {
     SelfcareTheme {
         ReflectionPage(
+            selectedDate = 123456789,
+            showDatePicker = false,
+            selectedMood = MoodType.GOOD,
+            firstText = "",
+            secondText = "",
+            thirdText = "",
+            openDatePicker = {},
+            closeDatePicker = {},
+            onDateSelected = {},
+            onMoodSelected = {},
+            onFirstTextChange = {},
+            onSecondTextChange = {},
+            onThirdTextChange = {},
             onRecordClick = {},
         )
     }

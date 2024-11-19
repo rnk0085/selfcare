@@ -9,21 +9,21 @@ import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 internal fun DiaryDatePickerSection(
     selectedDate: Long,
     showDatePicker: Boolean,
-    onClick: () -> Unit,
-    onDismiss: () -> Unit,
+    openDatePicker: () -> Unit,
+    closeDatePicker: () -> Unit,
     onDateSelected: (Long?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     DiaryDatePickerButton(
         selectedDate = selectedDate,
-        onClick = onClick,
+        onClick = openDatePicker,
         modifier = modifier,
     )
 
     if (showDatePicker) {
         DatePickerModal(
             onDateSelected = onDateSelected,
-            onDismiss = onDismiss,
+            onDismiss = closeDatePicker,
         )
     }
 }
@@ -35,8 +35,8 @@ private fun DiaryDatePickerSectionPreview() {
         DiaryDatePickerSection(
             selectedDate = 123456789,
             showDatePicker = false,
-            onClick = {},
-            onDismiss = {},
+            openDatePicker = {},
+            closeDatePicker = {},
             onDateSelected = {},
         )
     }
