@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.ui.currentTimeMillis
@@ -25,6 +27,7 @@ import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
 import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
+import com.rnk0085.selfcare.ui.screen.reflection.component.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
@@ -41,6 +44,8 @@ internal fun ReflectionScreen(
     var firstText by remember { mutableStateOf("") }
     var secondText by remember { mutableStateOf("") }
     var thirdText by remember { mutableStateOf("") }
+
+    val focusManager = LocalFocusManager.current
 
     Scaffold(
         topBar = {
@@ -82,14 +87,23 @@ internal fun ReflectionScreen(
             ThreeGoodThings(
                 goodThingItems = listOf(
                     GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Next(
+                            onClick = { focusManager.moveFocus(FocusDirection.Next) },
+                        ),
                         value = firstText,
                         onValueChange = { firstText = it },
                     ),
                     GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Next(
+                            onClick = { focusManager.moveFocus(FocusDirection.Next) },
+                        ),
                         value = secondText,
                         onValueChange = { secondText = it },
                     ),
                     GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Done(
+                            onClick = { focusManager.clearFocus() },
+                        ),
                         value = thirdText,
                         onValueChange = { thirdText = it },
                     ),
