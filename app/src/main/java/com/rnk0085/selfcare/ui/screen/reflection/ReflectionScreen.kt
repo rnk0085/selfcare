@@ -21,8 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
@@ -97,6 +99,7 @@ internal fun ReflectionScreen(
                         keyboardEvent = KeyboardEvent.Next(
                             onClick = { focusManager.moveFocus(FocusDirection.Next) },
                         ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_first),
                         value = firstText,
                         onValueChange = { firstText = it },
                     ),
@@ -104,6 +107,7 @@ internal fun ReflectionScreen(
                         keyboardEvent = KeyboardEvent.Next(
                             onClick = { focusManager.moveFocus(FocusDirection.Next) },
                         ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_second),
                         value = secondText,
                         onValueChange = { secondText = it },
                     ),
@@ -111,6 +115,7 @@ internal fun ReflectionScreen(
                         keyboardEvent = KeyboardEvent.Done(
                             onClick = { focusManager.clearFocus() },
                         ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_third),
                         value = thirdText,
                         onValueChange = { thirdText = it },
                     ),

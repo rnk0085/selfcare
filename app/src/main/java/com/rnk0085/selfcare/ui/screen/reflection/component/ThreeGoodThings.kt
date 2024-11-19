@@ -42,7 +42,7 @@ internal fun ThreeGoodThings(
 
             GoodThingTextField(
                 keyboardEvent = goodThingItem.keyboardEvent,
-                placeHolderText = "美味しいご飯を食べた",
+                placeHolderText = goodThingItem.placeHolderText,
                 value = goodThingItem.value,
                 onValueChange = goodThingItem.onValueChange,
                 modifier = Modifier
@@ -55,6 +55,7 @@ internal fun ThreeGoodThings(
 
 data class GoodThingItem(
     val keyboardEvent: KeyboardEvent,
+    val placeHolderText: String,
     val value: String,
     val onValueChange: (String) -> Unit,
 )
@@ -69,6 +70,7 @@ private fun ThreeGoodThingsPreview() {
                     keyboardEvent = KeyboardEvent.Next(
                         onClick = {},
                     ),
+                    placeHolderText = "First",
                     value = "",
                     onValueChange = {},
                 ),
@@ -76,6 +78,7 @@ private fun ThreeGoodThingsPreview() {
                     keyboardEvent = KeyboardEvent.Next(
                         onClick = {},
                     ),
+                    placeHolderText = "Second",
                     value = "",
                     onValueChange = {},
                 ),
@@ -83,6 +86,7 @@ private fun ThreeGoodThingsPreview() {
                     keyboardEvent = KeyboardEvent.Done(
                         onClick = {},
                     ),
+                    placeHolderText = "Third",
                     value = "",
                     onValueChange = {},
                 ),
