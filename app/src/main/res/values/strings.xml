@@ -4,6 +4,7 @@
     <string name="cancel">キャンセル</string>
     
     <!--  ふりかえり画面  -->
+    <string name="reflection_top_bar_title">ふりかえり</string>
     <string name="mood_selector_label">どのような1日でしたか？</string>
     <string name="three_good_things_label">3つのGoodなことは？</string>
     <string name="good_thing_place_holder_text_first">ごはんが美味しかった</string>
