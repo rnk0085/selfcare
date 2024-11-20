@@ -86,4 +86,7 @@ dependencies {
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+
+    // https://developer.android.com/develop/ui/compose/libraries?hl=ja#hilt-navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 }
