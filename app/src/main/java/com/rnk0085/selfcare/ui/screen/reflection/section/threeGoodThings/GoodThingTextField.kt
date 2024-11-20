@@ -1,6 +1,5 @@
-package com.rnk0085.selfcare.ui.screen.reflection.component
+package com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings
 
-import androidx.compose.foundation.text.KeyboardActionScope
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -59,14 +58,6 @@ internal fun GoodThingTextField(
             onDone = if (keyboardEvent is KeyboardEvent.Done) keyboardEvent.onClick else null,
         )
     )
-}
-
-sealed interface KeyboardEvent {
-    val onClick: KeyboardActionScope.() -> Unit
-
-    data class Next(override val onClick: KeyboardActionScope.() -> Unit) : KeyboardEvent
-
-    data class Done(override val onClick: KeyboardActionScope.() -> Unit) : KeyboardEvent
 }
 
 @Composable

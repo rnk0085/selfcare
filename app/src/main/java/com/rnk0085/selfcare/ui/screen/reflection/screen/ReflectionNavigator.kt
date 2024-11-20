@@ -1,4 +1,4 @@
-package com.rnk0085.selfcare.ui.screen.reflection
+package com.rnk0085.selfcare.ui.screen.reflection.screen
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

@@ -1,4 +1,4 @@
-package com.rnk0085.selfcare.ui.screen.reflection.component
+package com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker
 
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
