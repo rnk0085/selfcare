@@ -1,0 +1,7 @@
+# https://pinterest.github.io/ktlint/latest/rules/standard/#function-naming
+# https://github.com/android/nowinandroid/blob/main/.editorconfig
+
+[*.{kt,kts}]
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+ktlint_function_naming_ignore_when_annotated_with = Composable, Test
