@@ -75,3 +75,14 @@ jobs:
           report-path: build/reports/*.xml
           ignore-warnings: true
         continue-on-error: false
+
+  # https://github.com/marketplace/actions/detekt-all
+  detekt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v2
+
+      - name: "detekt"
+        uses: natiginfo/action-detekt-all@1.23.7
