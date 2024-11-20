@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -48,6 +50,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -72,4 +78,7 @@ dependencies {
 
     // https://kotlinlang.org/docs/serialization.html
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
