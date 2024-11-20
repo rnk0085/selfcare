@@ -27,6 +27,7 @@ internal fun ReflectionScreen(
 
     ReflectionScreen(
         uiState = uiState,
+        onBackClicked = onBackClicked,
         openDatePicker = viewModel::openDatePicker,
         closeDatePicker = viewModel::closeDatePicker,
         onDateSelected = viewModel::onDateSelected,
@@ -34,7 +35,7 @@ internal fun ReflectionScreen(
         onFirstTextChange = viewModel::onFirstTextChange,
         onSecondTextChange = viewModel::onSecondTextChange,
         onThirdTextChange = viewModel::onThirdTextChange,
-        onBackClicked = onBackClicked,
+        onRecordClick = viewModel::onRecordClick,
     )
 }
 
@@ -49,6 +50,7 @@ private fun ReflectionScreen(
     onFirstTextChange: (String) -> Unit,
     onSecondTextChange: (String) -> Unit,
     onThirdTextChange: (String) -> Unit,
+    onRecordClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -75,7 +77,7 @@ private fun ReflectionScreen(
             onFirstTextChange = onFirstTextChange,
             onSecondTextChange = onSecondTextChange,
             onThirdTextChange = onThirdTextChange,
-            onRecordClick = { /** TODO **/ },
+            onRecordClick = onRecordClick,
         )
     }
 }
@@ -93,5 +95,6 @@ private fun ReflectionScreenPreview() {
         onSecondTextChange = {},
         onThirdTextChange = {},
         onBackClicked = {},
+        onRecordClick = {},
     )
 }
