@@ -10,7 +10,7 @@ class DiaryRepositoryImpl @Inject constructor() : DiaryRepository {
     private val database = Firebase.firestore
 
     override suspend fun add(diary: Diary) {
-        database.collection("diarys")
+        database.collection(FirestoreCollecitons.DIARYS)
             .add(diary.toMap())
             .addOnSuccessListener {
                 // TODO
