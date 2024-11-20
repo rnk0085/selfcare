@@ -14,3 +14,5 @@ val Pink40 = Color(0xFF7D5260)
 // カードや記録する場所で使用予定
 val sectionContainerColor = Color.White
 val sectionContentColor = Color.Black
+
+val placeholderColor = Color.LightGray

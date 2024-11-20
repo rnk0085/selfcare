@@ -1,9 +1,12 @@
 package com.rnk0085.selfcare.ui.screen.reflection
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -15,15 +18,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.component.DatePickerModal
 import com.rnk0085.selfcare.ui.screen.reflection.component.DiaryDatePickerButton
+import com.rnk0085.selfcare.ui.screen.reflection.component.GoodThingItem
+import com.rnk0085.selfcare.ui.screen.reflection.component.KeyboardEvent
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodSelector
 import com.rnk0085.selfcare.ui.screen.reflection.component.MoodType
+import com.rnk0085.selfcare.ui.screen.reflection.component.ThreeGoodThings
 
 @Composable
 internal fun ReflectionScreen(
@@ -33,6 +44,12 @@ internal fun ReflectionScreen(
     var showDatePicker by remember { mutableStateOf(false) }
 
     var selectedMood by remember { mutableStateOf<MoodType?>(null) }
+
+    var firstText by remember { mutableStateOf("") }
+    var secondText by remember { mutableStateOf("") }
+    var thirdText by remember { mutableStateOf("") }
+
+    val focusManager = LocalFocusManager.current
 
     Scaffold(
         topBar = {
@@ -45,6 +62,12 @@ internal fun ReflectionScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = { focusManager.clearFocus() },
+                    )
+                }
+                .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -68,6 +91,35 @@ internal fun ReflectionScreen(
             MoodSelector(
                 selectedMood = selectedMood,
                 onMoodSelected = { selectedMood = it },
+            )
+
+            ThreeGoodThings(
+                goodThingItems = listOf(
+                    GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Next(
+                            onClick = { focusManager.moveFocus(FocusDirection.Next) },
+                        ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_first),
+                        value = firstText,
+                        onValueChange = { firstText = it },
+                    ),
+                    GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Next(
+                            onClick = { focusManager.moveFocus(FocusDirection.Next) },
+                        ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_second),
+                        value = secondText,
+                        onValueChange = { secondText = it },
+                    ),
+                    GoodThingItem(
+                        keyboardEvent = KeyboardEvent.Done(
+                            onClick = { focusManager.clearFocus() },
+                        ),
+                        placeHolderText = stringResource(R.string.good_thing_place_holder_text_third),
+                        value = thirdText,
+                        onValueChange = { thirdText = it },
+                    ),
+                )
             )
 
             Button(onClick = { /* TODO */ }) {
