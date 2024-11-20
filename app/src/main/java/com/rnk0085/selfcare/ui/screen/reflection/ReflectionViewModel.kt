@@ -47,4 +47,29 @@ internal class ReflectionViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+
+    // TODO: firstText, secondText, thirdText の処理が同じなので共通化する
+    fun onFirstTextChange(text: String) {
+        _uiState.update {
+            it.copy(
+                firstText = text,
+            )
+        }
+    }
+
+    fun onSecondTextChange(text: String) {
+        _uiState.update {
+            it.copy(
+                secondText = text,
+            )
+        }
+    }
+
+    fun onThirdTextChange(text: String) {
+        _uiState.update {
+            it.copy(
+                thirdText = text,
+            )
+        }
+    }
 }

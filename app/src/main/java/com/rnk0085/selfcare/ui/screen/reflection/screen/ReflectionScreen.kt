@@ -31,6 +31,9 @@ internal fun ReflectionScreen(
         closeDatePicker = viewModel::closeDatePicker,
         onDateSelected = viewModel::onDateSelected,
         onMoodSelected = viewModel::onMoodSelected,
+        onFirstTextChange = viewModel::onFirstTextChange,
+        onSecondTextChange = viewModel::onSecondTextChange,
+        onThirdTextChange = viewModel::onThirdTextChange,
         onBackClicked = onBackClicked,
     )
 }
@@ -43,6 +46,9 @@ private fun ReflectionScreen(
     closeDatePicker: () -> Unit,
     onDateSelected: (Long?) -> Unit,
     onMoodSelected: (MoodType) -> Unit,
+    onFirstTextChange: (String) -> Unit,
+    onSecondTextChange: (String) -> Unit,
+    onThirdTextChange: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -66,9 +72,9 @@ private fun ReflectionScreen(
             closeDatePicker = closeDatePicker,
             onDateSelected = onDateSelected,
             onMoodSelected = onMoodSelected,
-            onFirstTextChange = {},
-            onSecondTextChange = {},
-            onThirdTextChange = {},
+            onFirstTextChange = onFirstTextChange,
+            onSecondTextChange = onSecondTextChange,
+            onThirdTextChange = onThirdTextChange,
             onRecordClick = { /** TODO **/ },
         )
     }
@@ -83,6 +89,9 @@ private fun ReflectionScreenPreview() {
         closeDatePicker = {},
         onDateSelected = {},
         onMoodSelected = {},
+        onFirstTextChange = {},
+        onSecondTextChange = {},
+        onThirdTextChange = {},
         onBackClicked = {},
     )
 }
