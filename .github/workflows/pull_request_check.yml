@@ -25,13 +25,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-  test:
+  local-unit-test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-
-      # https://github.com/actions/setup-java
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -42,5 +40,33 @@ jobs:
       # https://developer.android.com/studio/test/command-line
       - name: Run local unit tests
         run: ./gradlew test
+
+  instrumented-unit-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      # エミュレーターのインストールと起動
+      - name: Set up Android Emulator
+        run: |
+          sudo apt update -qq
+          sudo apt install -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+          yes | sdkmanager "system-images;android-30;google_apis;x86_64"
+          echo "no" | avdmanager create avd --name test --package "system-images;android-30;google_apis;x86_64" --force
+          nohup emulator -avd test -no-window -noaudio -gpu off &
+
+      # エミュレーターが立ち上がるまで待機
+      - name: Wait for emulator to start
+        run: |
+          emulator -list-avds
+          adb wait-for-device
+
       - name: Run instrumented unit tests
         run: ./gradlew connectedAndroidTest
