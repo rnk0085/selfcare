@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -18,15 +17,13 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.rnk0085.selfcare.R
-import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
+import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
+import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
+import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.GoodThingItem
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.KeyboardEvent
-import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodSelectorSection
 import com.rnk0085.selfcare.ui.screen.reflection.section.threeGoodThings.ThreeGoodThingsSection
-import com.rnk0085.selfcare.ui.screen.reflection.section.diaryDatePicker.DiaryDatePickerSection
-import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 
@@ -107,7 +104,7 @@ internal fun ReflectionPage(
                     value = thirdText,
                     onValueChange = onThirdTextChange,
                 ),
-            )
+            ),
         )
 
         Spacer(modifier = Modifier.height(Spacing.Medium))

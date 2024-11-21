@@ -47,13 +47,13 @@ internal fun ReflectionScreen(
             BottomAppBar {
                 PrimaryButton(
                     text = stringResource(R.string.record_button_text),
-                    onClick = { /** TODO **/ },
+                    onClick = { /* TODO */ },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = Spacing.Large),
                 )
             }
-        }
+        },
     ) { innerPadding ->
         ReflectionPage(
             modifier = Modifier
