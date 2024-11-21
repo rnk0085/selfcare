@@ -1,7 +1,9 @@
 package com.rnk0085.selfcare.ui.screen.reflection.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,9 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.component.NavigationType
+import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.page.ReflectionPage
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
+import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ReflectionScreen(
@@ -39,6 +43,17 @@ internal fun ReflectionScreen(
                 navigationType = NavigationType.Back(onClick = onBackClicked),
             )
         },
+        bottomBar = {
+            BottomAppBar {
+                PrimaryButton(
+                    text = stringResource(R.string.record_button_text),
+                    onClick = { /** TODO **/ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = Spacing.Large),
+                )
+            }
+        }
     ) { innerPadding ->
         ReflectionPage(
             modifier = Modifier
@@ -60,7 +75,6 @@ internal fun ReflectionScreen(
             onFirstTextChange = { firstText = it },
             onSecondTextChange = { secondText = it },
             onThirdTextChange = { thirdText = it },
-            onRecordClick = { /** TODO **/ },
         )
     }
 }

@@ -45,7 +45,6 @@ internal fun ReflectionPage(
     onFirstTextChange: (String) -> Unit,
     onSecondTextChange: (String) -> Unit,
     onThirdTextChange: (String) -> Unit,
-    onRecordClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val focusManager = LocalFocusManager.current
@@ -111,16 +110,7 @@ internal fun ReflectionPage(
             )
         )
 
-        Spacer(modifier = Modifier.height(48.dp))
-
-        // TODO: 記録ボタンをスクロールしなくても表示できるようにする
-        PrimaryButton(
-            text = stringResource(R.string.record_button_text),
-            onClick = onRecordClick,
-            modifier = Modifier.fillMaxWidth(),
-        )
-
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(Spacing.Medium))
     }
 }
 
@@ -142,7 +132,6 @@ private fun ReflectionPagePreview() {
             onFirstTextChange = {},
             onSecondTextChange = {},
             onThirdTextChange = {},
-            onRecordClick = {},
         )
     }
 }
