@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
+import com.rnk0085.selfcare.ui.screen.reflection.component.ValidationText
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 
@@ -45,6 +46,17 @@ internal fun ThreeGoodThingsSection(
                 placeHolderText = goodThingItem.placeHolderText,
                 value = goodThingItem.value,
                 onValueChange = goodThingItem.onValueChange,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Spacing.Small),
+            )
+        }
+
+        Spacer(modifier = Modifier.height(Spacing.Medium))
+
+        if (goodThingItems.any { it.value.isBlank() }) {
+            ValidationText(
+                text = "※3つ記入してください",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = Spacing.Small),

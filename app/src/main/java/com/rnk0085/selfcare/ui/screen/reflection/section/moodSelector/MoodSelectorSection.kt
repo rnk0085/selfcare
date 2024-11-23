@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
+import com.rnk0085.selfcare.ui.screen.reflection.component.ValidationText
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 import com.rnk0085.selfcare.ui.theme.sectionContainerColor
@@ -53,6 +54,17 @@ internal fun MoodSelectorSection(
                     onClick = { onMoodSelected(mood) },
                 )
             }
+        }
+
+        Spacer(modifier = Modifier.height(Spacing.Small))
+
+        if (selectedMood == null) {
+            ValidationText(
+                text = "※どれか一つを選択してください",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Spacing.Small),
+            )
         }
     }
 }
