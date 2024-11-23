@@ -55,7 +55,7 @@ internal fun ThreeGoodThingsSection(
 
         if (goodThingItems.any { it.value.isBlank() }) {
             ValidationText(
-                text = "※3つ記入してください",
+                text = stringResource(R.string.three_good_things_validation_label),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = Spacing.Small),

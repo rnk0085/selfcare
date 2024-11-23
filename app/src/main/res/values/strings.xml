@@ -7,6 +7,8 @@
     <string name="reflection_top_bar_title">ふりかえり</string>
     <string name="mood_selector_label">どのような1日でしたか？</string>
     <string name="three_good_things_label">3つのGoodなことは？</string>
+    <string name="mood_selector_validation_label">※どれか1つを選択してください</string>
+    <string name="three_good_things_validation_label">※3つ記入してください</string>
     <string name="good_thing_place_holder_text_first">ごはんが美味しかった</string>
     <string name="good_thing_place_holder_text_second">暖かいお布団で寝られてしあわせ</string>
     <string name="good_thing_place_holder_text_third">猫がかわいくて癒された〜</string>

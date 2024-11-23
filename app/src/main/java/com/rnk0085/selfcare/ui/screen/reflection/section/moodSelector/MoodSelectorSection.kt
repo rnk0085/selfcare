@@ -59,7 +59,7 @@ internal fun MoodSelectorSection(
 
         if (selectedMood == null) {
             ValidationText(
-                text = "※どれか一つを選択してください",
+                text = stringResource(R.string.mood_selector_validation_label),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = Spacing.Small),
