@@ -1,7 +1,9 @@
 package com.rnk0085.selfcare.ui.screen.reflection.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,11 +14,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.screen.component.NavigationType
+import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionUiState
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionViewModel
 import com.rnk0085.selfcare.ui.screen.reflection.page.ReflectionPage
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
+import com.rnk0085.selfcare.ui.theme.Spacing
 
 @Composable
 internal fun ReflectionScreen(
@@ -59,6 +63,17 @@ private fun ReflectionScreen(
                 navigationType = NavigationType.Back(onClick = onBackClicked),
             )
         },
+        bottomBar = {
+            BottomAppBar {
+                PrimaryButton(
+                    text = stringResource(R.string.record_button_text),
+                    onClick = onRecordClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = Spacing.Large),
+                )
+            }
+        },
     ) { innerPadding ->
         ReflectionPage(
             modifier = Modifier
@@ -77,7 +92,6 @@ private fun ReflectionScreen(
             onFirstTextChange = onFirstTextChange,
             onSecondTextChange = onSecondTextChange,
             onThirdTextChange = onThirdTextChange,
-            onRecordClick = onRecordClick,
         )
     }
 }

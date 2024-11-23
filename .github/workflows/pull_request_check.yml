@@ -71,7 +71,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
 
-  # https://github.com/yutailang0119/action-android-lint
+  # https://zenn.dev/yumemi_inc/articles/8d1603b5a8ea26
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -88,9 +88,10 @@ jobs:
         env:
           GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE_JSON }}
         run: echo $GOOGLE_SERVICE | base64 --decode --ignore-garbage > ./app/google-services.json
-      - run: ./gradlew lint
-      - uses: yutailang0119/action-android-lint@v4
+
+      - run: ./gradlew app:lintDebug
+
+      # https://docs.github.com/ja/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github
+      - uses: github/codeql-action/upload-sarif@v3
         with:
-          report-path: build/reports/*.xml
-          ignore-warnings: true
-        continue-on-error: false
+          sarif_file: app/build/reports/lint-results-debug.sarif
