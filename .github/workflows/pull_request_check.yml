@@ -22,6 +22,12 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      # https://qiita.com/sudo5in5k/items/5b6da5dbba3fc2514319
+      - name: copy google-service
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: echo $GOOGLE_SERVICE | base64 --decode --ignore-garbage > ./app/google-services.json
+
       - name: Build with Gradle
         run: ./gradlew build
 
@@ -37,6 +43,11 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
+      - name: copy google-service
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: echo $GOOGLE_SERVICE | base64 --decode --ignore-garbage > ./app/google-services.json
+
       # https://developer.android.com/studio/test/command-line
       - name: Run local unit tests
         run: ./gradlew test
@@ -50,6 +61,10 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 1
+      - name: copy google-service
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: echo $GOOGLE_SERVICE | base64 --decode --ignore-garbage > ./app/google-services.json
       - name: ktlint
         uses: ScaCap/action-ktlint@master
         with:
@@ -69,6 +84,11 @@ jobs:
           distribution: zulu
           java-version: 21
           cache: gradle
+      - name: copy google-service
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE_JSON }}
+        run: echo $GOOGLE_SERVICE | base64 --decode --ignore-garbage > ./app/google-services.json
+
       - run: ./gradlew app:lintDebug
 
       # https://docs.github.com/ja/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github

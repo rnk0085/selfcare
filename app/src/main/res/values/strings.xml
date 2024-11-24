@@ -2,7 +2,7 @@
     <string name="app_name">selfcare</string>
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
-    
+
     <!--  ふりかえり画面  -->
     <string name="reflection_top_bar_title">ふりかえり</string>
     <string name="mood_selector_label">どのような1日でしたか？</string>

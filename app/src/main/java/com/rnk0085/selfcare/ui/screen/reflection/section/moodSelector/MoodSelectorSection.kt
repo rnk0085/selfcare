@@ -35,10 +35,10 @@ internal fun MoodSelectorSection(
             .padding(all = Spacing.Large),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-       Text(
-           text = stringResource(R.string.mood_selector_label),
-           style = MaterialTheme.typography.labelMedium,
-       )
+        Text(
+            text = stringResource(R.string.mood_selector_label),
+            style = MaterialTheme.typography.labelMedium,
+        )
 
         Spacer(modifier = Modifier.height(Spacing.Small))
 

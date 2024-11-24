@@ -16,7 +16,7 @@ internal fun SecondaryButton(
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
-    Button (
+    Button(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
@@ -45,6 +45,7 @@ private fun SecondaryButton() {
         )
     }
 }
+
 @Composable
 @Preview
 private fun SecondaryDisableButton() {
