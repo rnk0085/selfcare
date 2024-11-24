@@ -32,7 +32,7 @@ internal fun DatePickerModal(
                 onClick = {
                     onDateSelected(datePickerState.selectedDateMillis)
                     onDismiss()
-                }
+                },
             ) {
                 Text(
                     text = stringResource(R.string.ok),
@@ -57,7 +57,7 @@ internal fun DatePickerModal(
 
 // 明日以降の日付を選択不可にする
 @OptIn(ExperimentalMaterial3Api::class)
-val NoFutureDate : SelectableDates = object : SelectableDates {
+val NoFutureDate: SelectableDates = object : SelectableDates {
     override fun isSelectableDate(utcTimeMillis: Long): Boolean {
         return utcTimeMillis <= currentTimeMillis
     }

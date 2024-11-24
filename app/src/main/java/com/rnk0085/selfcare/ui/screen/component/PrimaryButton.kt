@@ -15,7 +15,7 @@ internal fun PrimaryButton(
     onClick: () -> Unit,
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
-){
+) {
     Button(
         onClick = onClick,
         modifier = modifier,

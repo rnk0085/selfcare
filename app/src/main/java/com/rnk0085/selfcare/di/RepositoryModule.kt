@@ -14,5 +14,5 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindDiaryRepository(
         diaryRepositoryImpl: DiaryRepositoryImpl
-    ) : DiaryRepository
+    ): DiaryRepository
 }

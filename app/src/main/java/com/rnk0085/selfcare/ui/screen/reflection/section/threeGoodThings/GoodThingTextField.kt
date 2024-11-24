@@ -56,7 +56,7 @@ internal fun GoodThingTextField(
         keyboardActions = KeyboardActions(
             onNext = if (keyboardEvent is KeyboardEvent.Next) keyboardEvent.onClick else null,
             onDone = if (keyboardEvent is KeyboardEvent.Done) keyboardEvent.onClick else null,
-        )
+        ),
     )
 }
 
