@@ -10,6 +10,7 @@ data class ReflectionUiState(
     val firstText: String,
     val secondText: String,
     val thirdText: String,
+    val recordState: RecordState,
 ) {
     companion object {
         val InitialValue = ReflectionUiState(
@@ -19,6 +20,14 @@ data class ReflectionUiState(
             firstText = "",
             secondText = "",
             thirdText = "",
+            recordState = RecordState.Idle,
         )
     }
+}
+
+sealed class RecordState {
+    object Idle : RecordState()
+    object Loading : RecordState()
+    object Success : RecordState()
+    data class Error(val message: String) : RecordState()
 }

@@ -91,7 +91,24 @@ internal class ReflectionViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            diaryRepository.add(diary)
+            _uiState.update {
+                it.copy(recordState = RecordState.Loading)
+            }
+
+            try {
+                diaryRepository.add(diary)
+                _uiState.update {
+                    it.copy(recordState = RecordState.Success)
+                }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(
+                        recordState = RecordState.Error(
+                            message = e.message ?: "不明なエラーが発生しました",
+                        ),
+                    )
+                }
+            }
         }
     }
 }
