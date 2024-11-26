@@ -95,4 +95,6 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     // https://github.com/mockk/mockk
     testImplementation(libs.mockk)
+    // https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/
+    testImplementation(libs.kotlinx.coroutines.test)
 }
