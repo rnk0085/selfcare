@@ -2,14 +2,17 @@ package com.rnk0085.selfcare.ui.screen.reflection.screen
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -108,6 +111,16 @@ private fun ReflectionScreen(
             onSecondTextChange = onSecondTextChange,
             onThirdTextChange = onThirdTextChange,
         )
+
+        if (uiState.recordState is RecordState.Loading) {
+            // TODO: Loading 中は変更不可にする
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                CircularProgressIndicator()
+            }
+        }
     }
 }
 

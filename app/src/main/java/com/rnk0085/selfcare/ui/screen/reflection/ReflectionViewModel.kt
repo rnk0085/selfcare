@@ -8,6 +8,7 @@ import com.rnk0085.selfcare.domain.model.Diary
 import com.rnk0085.selfcare.ui.currentTimeMillis
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -97,6 +98,7 @@ internal class ReflectionViewModel @Inject constructor(
 
             try {
                 diaryRepository.add(diary)
+                delay(10000)
                 _uiState.update {
                     it.copy(recordState = RecordState.Success)
                 }
