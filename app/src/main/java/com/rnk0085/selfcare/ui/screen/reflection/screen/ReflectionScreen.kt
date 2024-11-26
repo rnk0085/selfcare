@@ -2,6 +2,7 @@ package com.rnk0085.selfcare.ui.screen.reflection.screen
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -77,7 +78,11 @@ private fun ReflectionScreen(
         topBar = {
             SelfcareTopAppBar(
                 title = stringResource(R.string.reflection_top_bar_title),
-                navigationType = NavigationType.Back(onClick = onBackClicked),
+                navigationType = if (uiState.recordState is RecordState.Loading) {
+                    null
+                } else {
+                    NavigationType.Back(onClick = onBackClicked)
+                },
             )
         },
         bottomBar = {
@@ -88,7 +93,8 @@ private fun ReflectionScreen(
                     enabled = uiState.selectedMood != null
                             && uiState.firstText.isNotEmpty()
                             && uiState.secondText.isNotEmpty()
-                            && uiState.thirdText.isNotEmpty(),
+                            && uiState.thirdText.isNotEmpty()
+                            && uiState.recordState !is RecordState.Loading,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = Spacing.Large),
@@ -116,9 +122,10 @@ private fun ReflectionScreen(
         )
 
         if (uiState.recordState is RecordState.Loading) {
-            // TODO: Loading 中は変更不可にする
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(enabled = false) {},
                 contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator()
