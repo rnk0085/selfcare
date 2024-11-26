@@ -25,6 +25,7 @@ import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
 import com.rnk0085.selfcare.ui.screen.reflection.RecordState
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionUiState
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionViewModel
+import com.rnk0085.selfcare.ui.screen.reflection.component.ErrorDialog
 import com.rnk0085.selfcare.ui.screen.reflection.page.ReflectionPage
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.theme.Spacing
@@ -54,6 +55,7 @@ internal fun ReflectionScreen(
         onSecondTextChange = viewModel::onSecondTextChange,
         onThirdTextChange = viewModel::onThirdTextChange,
         onRecordClick = viewModel::onRecordClick,
+        resetRecordState = viewModel::resetRecordState,
     )
 }
 
@@ -69,6 +71,7 @@ private fun ReflectionScreen(
     onSecondTextChange: (String) -> Unit,
     onThirdTextChange: (String) -> Unit,
     onRecordClick: () -> Unit,
+    resetRecordState: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -121,6 +124,13 @@ private fun ReflectionScreen(
                 CircularProgressIndicator()
             }
         }
+
+        if (uiState.recordState is RecordState.Error) {
+            ErrorDialog(
+                message = uiState.recordState.message,
+                onDismiss = resetRecordState,
+            )
+        }
     }
 }
 
@@ -138,5 +148,6 @@ private fun ReflectionScreenPreview() {
         onThirdTextChange = {},
         onBackClicked = {},
         onRecordClick = {},
+        resetRecordState = {},
     )
 }

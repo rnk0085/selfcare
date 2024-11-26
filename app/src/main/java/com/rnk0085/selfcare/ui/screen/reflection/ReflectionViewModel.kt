@@ -99,6 +99,7 @@ internal class ReflectionViewModel @Inject constructor(
             try {
                 diaryRepository.add(diary)
                 delay(10000)
+                throw Exception("エラー内容エラー内容エラー内容エラー内容エラー内容エラー内容エラー内容")
                 _uiState.update {
                     it.copy(recordState = RecordState.Success)
                 }
@@ -111,6 +112,12 @@ internal class ReflectionViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    fun resetRecordState() {
+        _uiState.update {
+            it.copy(recordState = RecordState.Idle)
         }
     }
 }
