@@ -57,7 +57,9 @@ internal fun MoodSelectorSection(
 
         Spacer(modifier = Modifier.height(Spacing.Small))
 
-        if (selectedMood == null) {
+        if (
+            selectedMood == null
+        ) {
             ValidationText(
                 text = stringResource(R.string.mood_selector_validation_label),
                 modifier = Modifier
