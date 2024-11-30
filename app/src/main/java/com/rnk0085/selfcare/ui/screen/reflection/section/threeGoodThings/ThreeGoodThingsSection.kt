@@ -53,9 +53,7 @@ internal fun ThreeGoodThingsSection(
 
         Spacer(modifier = Modifier.height(Spacing.Medium))
 
-        if (
-            goodThingItems.any { it.value.isBlank() }
-        ) {
+        if (goodThingItems.any { it.value.isBlank() }) {
             ValidationText(
                 text = stringResource(R.string.three_good_things_validation_label),
                 modifier = Modifier
