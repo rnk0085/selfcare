@@ -60,4 +60,36 @@ class ReflectionViewModelTest {
         val expectedStates = listOf(RecordState.Idle, RecordState.Loading, RecordState.Success)
         assertEquals(expectedStates, stateList)
     }
+
+    @Test
+    fun uiStateReflection_whenOnRecordClickFailure_thenUpdateRecordStateError() = runTest {
+        val errorMessage = "エラーメッセージ"
+        coEvery { diaryRepository.add(any()) } coAnswers {
+            delay(100)
+            throw Exception(errorMessage)
+        }
+        val viewModel = ReflectionViewModel(
+            diaryRepository = diaryRepository,
+        )
+        // Flowの値を観察
+        val stateList = mutableListOf<RecordState>()
+        val job = launch(UnconfinedTestDispatcher(testScheduler)) {
+            viewModel.uiState.map { it.recordState }.toList(stateList)
+        }
+
+        viewModel.onRecordClick()
+        advanceUntilIdle()
+
+        coVerify(exactly = 1) {
+            diaryRepository.add(any())
+        }
+
+        job.cancel()
+        val expectedStates = listOf(
+            RecordState.Idle,
+            RecordState.Loading,
+            RecordState.Error(message = errorMessage),
+        )
+        assertEquals(expectedStates, stateList)
+    }
 }
