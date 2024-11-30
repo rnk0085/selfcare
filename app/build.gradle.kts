@@ -97,4 +97,6 @@ dependencies {
     testImplementation(libs.mockk)
     // https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/
     testImplementation(libs.kotlinx.coroutines.test)
+    // https://developer.android.com/develop/ui/compose/testing
+    androidTestImplementation(libs.androidx.ui.test.junit4.android)
 }

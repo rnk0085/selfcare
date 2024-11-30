@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -61,7 +62,7 @@ internal fun ReflectionScreen(
 }
 
 @Composable
-private fun ReflectionScreen(
+internal fun ReflectionScreen(
     uiState: ReflectionUiState,
     onBackClicked: () -> Unit,
     openDatePicker: () -> Unit,
@@ -97,7 +98,8 @@ private fun ReflectionScreen(
                             && uiState.recordState !is RecordState.Loading,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = Spacing.Large),
+                        .padding(horizontal = Spacing.Large)
+                        .testTag("ReflectionScreen:recordButton"),
                 )
             }
         },
@@ -125,7 +127,8 @@ private fun ReflectionScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .clickable(enabled = false) {},
+                    .clickable(enabled = false) {}
+                    .testTag("ReflectionScreen:loading"),
                 contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator()
@@ -136,6 +139,7 @@ private fun ReflectionScreen(
             ErrorDialog(
                 message = uiState.recordState.message,
                 onDismiss = resetRecordState,
+                modifier = Modifier.testTag("ReflectionScreen:errorDialog"),
             )
         }
     }
