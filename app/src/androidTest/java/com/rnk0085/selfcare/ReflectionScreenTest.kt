@@ -73,4 +73,72 @@ class ReflectionScreenTest {
             .onNodeWithTag("ReflectionScreen:recordButton")
             .assertIsEnabled()
     }
+
+    @Test
+    fun reflectionScreen_whenRecordStateIsLoading_showLoading() {
+        // Loading のとき
+        val fakeUiState = ReflectionUiState(
+            selectedMood = MoodType.VERY_GOOD,
+            firstText = "First text",
+            secondText = "Second text",
+            thirdText = "Third text",
+            recordState = RecordState.Loading,
+            selectedDate = currentTimeMillis,
+            showDatePicker = false,
+        )
+
+        composableTest.setContent {
+            ReflectionScreen(
+                uiState = fakeUiState,
+                openDatePicker = {},
+                closeDatePicker = {},
+                onDateSelected = {},
+                onMoodSelected = {},
+                onFirstTextChange = {},
+                onSecondTextChange = {},
+                onThirdTextChange = {},
+                onBackClicked = {},
+                onRecordClick = {},
+                resetRecordState = {},
+            )
+        }
+
+        composableTest
+            .onNodeWithTag("ReflectionScreen:loading")
+            .assertExists()
+    }
+
+    @Test
+    fun reflectionScreen_whenRecordStateIsError_showErrorDialog() {
+        // Error のとき
+        val fakeUiState = ReflectionUiState(
+            selectedMood = MoodType.VERY_GOOD,
+            firstText = "First text",
+            secondText = "Second text",
+            thirdText = "Third text",
+            recordState = RecordState.Error("エラーメッセージ"),
+            selectedDate = currentTimeMillis,
+            showDatePicker = false,
+        )
+
+        composableTest.setContent {
+            ReflectionScreen(
+                uiState = fakeUiState,
+                openDatePicker = {},
+                closeDatePicker = {},
+                onDateSelected = {},
+                onMoodSelected = {},
+                onFirstTextChange = {},
+                onSecondTextChange = {},
+                onThirdTextChange = {},
+                onBackClicked = {},
+                onRecordClick = {},
+                resetRecordState = {},
+            )
+        }
+
+        composableTest
+            .onNodeWithTag("ReflectionScreen:errorDialog")
+            .assertExists()
+    }
 }

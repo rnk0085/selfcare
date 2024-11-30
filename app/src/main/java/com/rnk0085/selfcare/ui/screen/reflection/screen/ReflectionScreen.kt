@@ -127,7 +127,8 @@ internal fun ReflectionScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .clickable(enabled = false) {},
+                    .clickable(enabled = false) {}
+                    .testTag("ReflectionScreen:loading"),
                 contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator()
@@ -138,6 +139,7 @@ internal fun ReflectionScreen(
             ErrorDialog(
                 message = uiState.recordState.message,
                 onDismiss = resetRecordState,
+                modifier = Modifier.testTag("ReflectionScreen:errorDialog"),
             )
         }
     }
