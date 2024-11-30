@@ -68,6 +68,10 @@ private fun ReflectionScreen(
                 PrimaryButton(
                     text = stringResource(R.string.record_button_text),
                     onClick = onRecordClick,
+                    enabled = uiState.selectedMood != null
+                            && uiState.firstText.isNotEmpty()
+                            && uiState.secondText.isNotEmpty()
+                            && uiState.thirdText.isNotEmpty(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = Spacing.Large),

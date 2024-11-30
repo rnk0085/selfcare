@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,6 +16,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rnk0085.selfcare.R
+import com.rnk0085.selfcare.ui.screen.reflection.component.SectionTitleLabel
+import com.rnk0085.selfcare.ui.screen.reflection.component.ValidationText
 import com.rnk0085.selfcare.ui.theme.SelfcareTheme
 import com.rnk0085.selfcare.ui.theme.Spacing
 import com.rnk0085.selfcare.ui.theme.sectionContainerColor
@@ -35,9 +36,8 @@ internal fun MoodSelectorSection(
             .padding(all = Spacing.Large),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
+        SectionTitleLabel(
             text = stringResource(R.string.mood_selector_label),
-            style = MaterialTheme.typography.labelMedium,
         )
 
         Spacer(modifier = Modifier.height(Spacing.Small))
@@ -53,6 +53,17 @@ internal fun MoodSelectorSection(
                     onClick = { onMoodSelected(mood) },
                 )
             }
+        }
+
+        Spacer(modifier = Modifier.height(Spacing.Small))
+
+        if (selectedMood == null) {
+            ValidationText(
+                text = stringResource(R.string.mood_selector_validation_label),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = Spacing.Small),
+            )
         }
     }
 }
