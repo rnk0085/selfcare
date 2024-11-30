@@ -1,12 +1,19 @@
 package com.rnk0085.selfcare.ui.screen.reflection.screen
 
+import android.content.ContentValues.TAG
+import android.util.Log
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,8 +23,10 @@ import com.rnk0085.selfcare.R
 import com.rnk0085.selfcare.ui.screen.component.NavigationType
 import com.rnk0085.selfcare.ui.screen.component.PrimaryButton
 import com.rnk0085.selfcare.ui.screen.component.SelfcareTopAppBar
+import com.rnk0085.selfcare.ui.screen.reflection.RecordState
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionUiState
 import com.rnk0085.selfcare.ui.screen.reflection.ReflectionViewModel
+import com.rnk0085.selfcare.ui.screen.reflection.component.ErrorDialog
 import com.rnk0085.selfcare.ui.screen.reflection.page.ReflectionPage
 import com.rnk0085.selfcare.ui.screen.reflection.section.moodSelector.MoodType
 import com.rnk0085.selfcare.ui.theme.Spacing
@@ -28,6 +37,13 @@ internal fun ReflectionScreen(
     onBackClicked: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(uiState.recordState) {
+        Log.d(TAG, "recordState: ${uiState.recordState}")
+        if (uiState.recordState is RecordState.Success) {
+            onBackClicked()
+        }
+    }
 
     ReflectionScreen(
         uiState = uiState,
@@ -40,6 +56,7 @@ internal fun ReflectionScreen(
         onSecondTextChange = viewModel::onSecondTextChange,
         onThirdTextChange = viewModel::onThirdTextChange,
         onRecordClick = viewModel::onRecordClick,
+        resetRecordState = viewModel::resetRecordState,
     )
 }
 
@@ -55,12 +72,17 @@ private fun ReflectionScreen(
     onSecondTextChange: (String) -> Unit,
     onThirdTextChange: (String) -> Unit,
     onRecordClick: () -> Unit,
+    resetRecordState: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             SelfcareTopAppBar(
                 title = stringResource(R.string.reflection_top_bar_title),
-                navigationType = NavigationType.Back(onClick = onBackClicked),
+                navigationType = if (uiState.recordState is RecordState.Loading) {
+                    null
+                } else {
+                    NavigationType.Back(onClick = onBackClicked)
+                },
             )
         },
         bottomBar = {
@@ -71,7 +93,8 @@ private fun ReflectionScreen(
                     enabled = uiState.selectedMood != null
                             && uiState.firstText.isNotEmpty()
                             && uiState.secondText.isNotEmpty()
-                            && uiState.thirdText.isNotEmpty(),
+                            && uiState.thirdText.isNotEmpty()
+                            && uiState.recordState !is RecordState.Loading,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = Spacing.Large),
@@ -97,6 +120,24 @@ private fun ReflectionScreen(
             onSecondTextChange = onSecondTextChange,
             onThirdTextChange = onThirdTextChange,
         )
+
+        if (uiState.recordState is RecordState.Loading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(enabled = false) {},
+                contentAlignment = Alignment.Center,
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+
+        if (uiState.recordState is RecordState.Error) {
+            ErrorDialog(
+                message = uiState.recordState.message,
+                onDismiss = resetRecordState,
+            )
+        }
     }
 }
 
@@ -114,5 +155,6 @@ private fun ReflectionScreenPreview() {
         onThirdTextChange = {},
         onBackClicked = {},
         onRecordClick = {},
+        resetRecordState = {},
     )
 }

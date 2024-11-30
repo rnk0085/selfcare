@@ -2,6 +2,7 @@
     <string name="app_name">selfcare</string>
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
+    <string name="error_dialog_title">エラーが発生しました</string>
 
     <!--  ふりかえり画面  -->
     <string name="reflection_top_bar_title">ふりかえり</string>
